@@ -10,7 +10,10 @@
   programs.git.enable = true;
 
   home.packages = with pkgs; [
-    #starship
-    #neofetch
+    termusic
+    yt-dlp
+    (writeShellScriptBin "youtube-dl" ''
+      exec ${pkgs.yt-dlp}/bin/yt-dlp "$@"
+    '')
   ];
 }

@@ -114,7 +114,6 @@
   vscode-fhs
   obsidian
   micro
-  termusic
   ncdu
   killall
   brave
