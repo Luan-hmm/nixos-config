@@ -24,7 +24,7 @@
           config.allowUnfree = true;
         };
       in {
-        nixosConfigurations.default = pkgs.lib.nixosSystem {
+        nixosConfigurations.desktop = pkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/luanhmm/configuration.nix
