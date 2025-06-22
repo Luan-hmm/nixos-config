@@ -10,10 +10,19 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # Bootloader
+  boot.kernelParams = [ "nohibernate" ]
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.cleanOnBoot = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+ };
+
   # Drive Nvidia
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -22,6 +31,7 @@
     powerManagement.enable = false;
     open = false;
     nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -109,6 +119,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+  os-prober
   kitty
   git
   vscode-fhs
@@ -118,6 +129,7 @@
   killall
   brave
   wget
+  efibootmgr
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
