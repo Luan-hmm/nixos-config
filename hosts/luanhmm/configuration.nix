@@ -11,9 +11,8 @@
     ];
 
   # Bootloader
-  boot.kernelParams = [ "nohibernate" ]
+  boot.kernelParams = [ "nohibernate" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.cleanOnBoot = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub = {
