@@ -137,12 +137,8 @@
   efibootmgr
   ripgrep
   pciutils
-  gnome-network-displays
-  gst-plugins-good
-  gst-plugins-bad
-  gst-plugins-ugly
-  gst-plugins-base
-  xdg-desktop-portal-gnome
+  vlc
+  util-linux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

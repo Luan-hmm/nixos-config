@@ -16,5 +16,6 @@
       exec ${pkgs.yt-dlp}/bin/yt-dlp "$@"
     '')
     audacity
+    thunderbird
   ];
 }
