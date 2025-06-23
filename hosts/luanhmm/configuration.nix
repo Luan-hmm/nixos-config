@@ -68,6 +68,11 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.gnome-remote-desktop.enable = true;
+
+  xdg.portal.enable = true;
+  xdg.portal.xdgOpenUsePortal = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gnome];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -131,6 +136,13 @@
   wget
   efibootmgr
   ripgrep
+  pciutils
+  gnome-network-displays
+  gst-plugins-good
+  gst-plugins-bad
+  gst-plugins-ugly
+  gst-plugins-base
+  xdg-desktop-portal-gnome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
