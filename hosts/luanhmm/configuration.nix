@@ -71,8 +71,15 @@
   services.gnome.gnome-remote-desktop.enable = true;
 
   xdg.portal.enable = true;
+  xdg.portal.gtkUsePortal = true;
   xdg.portal.xdgOpenUsePortal = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gnome];
+
+  services.flatpak.enable = true;
+
+  system.activationScripts.flathub = ''
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  '';
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -94,6 +101,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -114,9 +122,6 @@
     #  thunderbird
     ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
