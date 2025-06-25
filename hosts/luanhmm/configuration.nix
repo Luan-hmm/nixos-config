@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./home/steam.nix
+      ./core/flatpak.nix
     ];
 
   # Bootloader
@@ -71,15 +72,8 @@
   services.gnome.gnome-remote-desktop.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.gtkUsePortal = true;
   xdg.portal.xdgOpenUsePortal = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gnome];
-
-  services.flatpak.enable = true;
-
-  system.activationScripts.flathub = ''
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  '';
 
   # Configure keymap in X11
   services.xserver.xkb = {
