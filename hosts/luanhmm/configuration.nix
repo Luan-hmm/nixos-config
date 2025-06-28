@@ -84,6 +84,14 @@
   # Configure console keymap
   console.keyMap = "us";
 
+  services.udev.extraRules = ''
+    # Liberar teclado VIA/VIAL “silakka54”
+    KERNEL=="hidraw*", ATTRS{idVendor}=="feed", ATTRS{idProduct}=="0000", \
+    MODE="0666", TAG+="uaccess"
+  '';
+
+  
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -125,6 +133,7 @@
   environment.systemPackages = with pkgs; [
   os-prober
   kitty
+  usbutils
   git
   vscode-fhs
   obsidian
