@@ -25,7 +25,7 @@
     };
   in
   {
-    nixosConfigurations.desktop = pkgs.lib.nixosSystem {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       inherit system pkgs;
 
       modules = [
