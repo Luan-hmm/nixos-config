@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
       ./home/steam.nix
       ./core/flatpak.nix
@@ -34,6 +34,9 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  
+  # add zsh
+  programs.zsh.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -120,11 +123,9 @@
     isNormalUser = true;
     description = "luanhmm";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    shell = pkgs.zsh;
   };
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -133,6 +134,7 @@
   environment.systemPackages = with pkgs; [
   os-prober
   kitty
+  ghostty
   usbutils
   git
   vscode-fhs
