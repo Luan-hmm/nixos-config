@@ -22,5 +22,9 @@
     audacity
     thunderbird
     qbittorrent-enhanced
+    fastfetch
+    tldr
+    htop
+    mpv
   ];
 }
