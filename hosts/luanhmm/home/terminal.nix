@@ -18,7 +18,7 @@
     };
 
     shellAliases = {
-      ls  = "eza -T";
+      ls  = "eza -1";
       cat = "bat";
       cd  = "z";
     };
@@ -69,9 +69,8 @@
   ############################################################
   programs.fzf = {
     enable               = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;   # não injeta o script que estragava a variável
 
-    # Paleta simples (pode ajustar depois)
     colors = lib.mkForce {
       "fg+"     = "#8ec07c";
       "bg+"     = "-1";
@@ -80,21 +79,20 @@
       "prompt"  = "#458588";
       "pointer" = "#d3869b";
     };
-
-    defaultOptions = [
-      "--margin=1"
-      "--layout=reverse"
-      "--border=none"
-      "--info=hidden"
-      "--header="
-      "--prompt=/ "
-      "-i"
-      "--no-bold"
-      "--bind=enter:execute(nvim {})"
-      "--preview=bat --style=numbers --color=always --line-range :500 {}"
-      "--preview-window=right:60%:wrap"
-    ];
+    defaultOptions = [ ];
   };
+
+  ############################################################
+  # Acrescente no mesmo arquivo (fora do bloco fzf) isto:
+  ############################################################
+  programs.zsh.initContent = ''
+    export FZF_DEFAULT_OPTS="--margin=1 --layout=reverse --border=none \
+  --info=hidden --header= --prompt=/  -i --no-bold \
+  --bind=enter:execute(micro {}) \
+  --preview='bat --style=numbers --color=always --line-range=:500 {}' \
+  --preview-window=right:60%:wrap"
+  '';
+
 
   ############################################################
   # Pacotes auxiliares (garantem binários usados nos aliases e fzf)
@@ -104,6 +102,6 @@
     bat
     fzf
     zoxide
-    neovim            # usado pelo --bind do fzf
+    micro
   ];
 }

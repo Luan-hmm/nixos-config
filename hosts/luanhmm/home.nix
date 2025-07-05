@@ -26,5 +26,6 @@
     tldr
     htop
     mpv
+    micro
   ];
 }
