@@ -13,7 +13,7 @@
   programs.git.enable = true;
 
   home.packages = with pkgs; [
-    pipeline
+    unstable.pipeline
     termusic
     yt-dlp
     (writeShellScriptBin "youtube-dl" ''
